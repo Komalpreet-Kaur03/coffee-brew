@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brewed & Bound — Artisan Coffee Shop</title>
+  <meta name="description" content="Discover premium single-origin coffees, brewing guides, and coffee culture at Brewed & Bound. Order online or visit our café." />
+  <meta name="keywords" content="coffee shop, artisan coffee, single origin, espresso, cold brew, buy coffee online" />
+  <meta property="og:title" content="Brewed & Bound — Artisan Coffee Shop" />
+  <meta property="og:description" content="Premium single-origin coffees delivered to your door." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.brewedandbound.com" />
+
+  <!-- ═══════════════════════════════════════════════
+       GOOGLE ANALYTICS 4 — Replace G-XXXXXXXXXX
+  ═══════════════════════════════════════════════ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+      page_title: document.title,
+      page_path: window.location.pathname,
+      send_page_view: true
+    });
+    // Custom events helper
+    function trackEvent(action, category, label, value){
+      gtag('event', action, { event_category: category, event_label: label, value: value });
+    }
+  </script>
+
+  <!-- ═══════════════════════════════════════════════
+       GOOGLE ADS REMARKETING — Replace AW-XXXXXXXXX
+  ═══════════════════════════════════════════════ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+  <script>
+    gtag('config', 'AW-XXXXXXXXX');
+    // Conversion tracking function
+    function trackConversion(conversionLabel){
+      gtag('event', 'conversion', {
+        send_to: 'AW-XXXXXXXXX/' + conversionLabel
+      });
+    }
+  </script>
+
+  <!-- ═══════════════════════════════════════════════
+       GOOGLE ADSENSE — Replace ca-pub-XXXXXXXXXXXXXXXX
+  ═══════════════════════════════════════════════ -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Courier+Prime&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── CSS Variables ─────────────────────────── */
+    :root {
+      --cream:    #f5f0e8;
+      --parchment:#ede5d0;
+      --brown-light: #c8a86b;
+      --brown:    #8b5e3c;
+      --brown-dark:#4a2c0f;
+      --espresso: #1a0a02;
+      --gold:     #d4a843;
+      --green:    #4a6741;
+      --text:     #2b1a0e;
+      --text-muted:#7a5c3e;
+      --white:    #fffef9;
+      --shadow:   0 8px 40px rgba(26,10,2,.15);
+      --radius:   6px;
+      --transition: .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ─── Reset & Base ──────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--brown); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--gold); }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; line-height: 1.25; }
+
+    /* ─── Utility ───────────────────────────────── */
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: .95rem;
+      letter-spacing: .04em;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition);
+    }
+    .btn-primary { background: var(--brown-dark); color: var(--cream); }
+    .btn-primary:hover { background: var(--brown); color: var(--cream); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(74,44,15,.35); }
+    .btn-outline { background: transparent; color: var(--brown-dark); border: 2px solid var(--brown-dark); }
+    .btn-outline:hover { background: var(--brown-dark); color: var(--cream); }
+    .tag { display: inline-block; background: var(--parchment); color: var(--brown); padding: 4px 12px; border-radius: 20px; font-size: .78rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; }
+    .section-label { font-family: 'Courier Prime', monospace; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; color: var(--brown-light); margin-bottom: 12px; display: block; }
+    .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--brown-dark); margin-bottom: 16px; }
+    .divider { width: 60px; height: 3px; background: var(--gold); margin: 0 0 40px; }
+
+    /* ─── Noise Texture Overlay ─────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: .4;
+    }
+
+    /* ─── Announcement Bar ──────────────────────── */
+    .announcement-bar {
+      background: var(--brown-dark);
+      color: var(--cream);
+      text-align: center;
+      padding: 10px 24px;
+      font-size: .82rem;
+      letter-spacing: .06em;
+    }
+    .announcement-bar a { color: var(--gold); text-decoration: underline; }
+
+    /* ─── Navbar ────────────────────────────────── */
+    .navbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--parchment);
+      position: sticky; top: 0; z-index: 1000;
+      box-shadow: 0 2px 20px rgba(26,10,2,.07);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 900;
+      color: var(--brown-dark);
+    }
+    .nav-logo .logo-icon { font-size: 1.8rem; }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { font-size: .9rem; font-weight: 500; color: var(--text-muted); letter-spacing: .03em; }
+    .nav-links a:hover, .nav-links a.active { color: var(--brown-dark); }
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    .cart-btn {
+      position: relative; background: none; border: none; cursor: pointer;
+      font-size: 1.3rem; padding: 8px; color: var(--brown-dark);
+    }
+    .cart-count {
+      position: absolute; top: 0; right: 0;
+      background: var(--gold); color: var(--espresso);
+      font-size: .65rem; font-weight: 700;
+      width: 18px; height: 18px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--brown-dark); }
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 0;
+      background: var(--white); border-top: 1px solid var(--parchment);
+      padding: 16px 24px;
+    }
+    .mobile-menu a { padding: 12px 0; border-bottom: 1px solid var(--parchment); color: var(--text); font-weight: 500; }
+    .mobile-menu.open { display: flex; }
+
+    /* ─── Hero ──────────────────────────────────── */
+    .hero {
+      min-height: 92vh;
+      background:
+        linear-gradient(160deg, rgba(26,10,2,.7) 0%, rgba(74,44,15,.5) 60%, transparent 100%),
+        url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-content { max-width: 680px; color: var(--cream); animation: heroFadeIn 1.2s ease both; }
+    .hero-content .section-label { color: var(--gold); }
+    .hero-content h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 900; line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .hero-content h1 em { color: var(--gold); font-style: italic; }
+    .hero-content p { font-size: 1.15rem; opacity: .9; margin-bottom: 36px; max-width: 500px; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-scroll {
+      position: absolute; bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      color: var(--cream); opacity: .6; font-size: .8rem;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      letter-spacing: .1em; text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll::after {
+      content: '↓'; font-size: 1.2rem;
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ─── AdSense Banner Slot ───────────────────── */
+    .adsense-banner {
+      background: var(--parchment);
+      border: 1px dashed var(--brown-light);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+      margin: 32px auto;
+      max-width: 728px;
+      font-size: .75rem;
+      color: var(--text-muted);
+      letter-spacing: .06em;
+    }
+    /* Real AdSense ad unit sits inside .adsense-slot */
+    .adsense-slot ins { display: block; }
+
+    /* ─── Features Strip ────────────────────────── */
+    .features-strip {
+      background: var(--brown-dark);
+      padding: 28px 0;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .feature-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 0 28px;
+      border-right: 1px solid rgba(255,255,255,.12);
+      color: var(--cream);
+    }
+    .feature-item:last-child { border-right: none; }
+    .feature-item .icon { font-size: 1.8rem; }
+    .feature-item h4 { font-size: .95rem; font-weight: 600; font-family: 'DM Sans', sans-serif; }
+    .feature-item p  { font-size: .78rem; opacity: .65; }
+
+    /* ─── Shop Section ──────────────────────────── */
+    .section { padding: 100px 0; }
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+    }
+    .product-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(26,10,2,.18); }
+    .product-img {
+      height: 220px;
+      background-size: cover; background-position: center;
+      position: relative;
+    }
+    .product-badge {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--gold); color: var(--espresso);
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      padding: 4px 10px; border-radius: 20px; text-transform: uppercase;
+    }
+    .product-body { padding: 20px 22px 22px; }
+    .product-origin { font-size: .75rem; color: var(--brown-light); letter-spacing: .1em; text-transform: uppercase; font-family: 'Courier Prime', monospace; }
+    .product-name { font-size: 1.25rem; margin: 6px 0 8px; }
+    .product-desc { font-size: .85rem; color: var(--text-muted); margin-bottom: 16px; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-size: 1.35rem; font-weight: 700; color: var(--brown-dark); font-family: 'Playfair Display', serif; }
+    .add-to-cart-btn {
+      background: var(--brown-dark); color: var(--cream);
+      border: none; border-radius: var(--radius);
+      padding: 10px 18px; font-size: .85rem; cursor: pointer;
+      transition: background var(--transition);
+    }
+    .add-to-cart-btn:hover { background: var(--brown); }
+
+    /* ─── Mid AdSense Rectangle ─────────────────── */
+    .ad-rectangle {
+      display: flex; justify-content: center; margin: 60px 0;
+    }
+
+    /* ─── About Split ───────────────────────────── */
+    .about-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%; height: 520px;
+      object-fit: cover; border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+    .about-img-accent {
+      position: absolute; bottom: -30px; right: -30px;
+      width: 200px; height: 200px;
+      border-radius: 12px;
+      border: 6px solid var(--cream);
+      box-shadow: var(--shadow);
+      object-fit: cover;
+    }
+    .about-text { padding: 20px 0; }
+    .about-text p { color: var(--text-muted); margin-bottom: 20px; }
+    .about-stats { display: flex; gap: 32px; margin: 36px 0; }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: var(--brown-dark); line-height: 1; }
+    .stat-label { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--brown-light); margin-top: 4px; }
+
+    /* ─── Blog Section ──────────────────────────── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 32px;
+    }
+    .blog-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(26,10,2,.08);
+      transition: transform var(--transition);
+    }
+    .blog-card:hover { transform: translateY(-4px); }
+    .blog-img {
+      height: 200px; background-size: cover; background-position: center;
+    }
+    .blog-body { padding: 24px; }
+    .blog-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .blog-meta .tag { font-size: .72rem; }
+    .blog-meta time { font-size: .78rem; color: var(--text-muted); font-family: 'Courier Prime', monospace; }
+    .blog-title { font-size: 1.2rem; margin-bottom: 10px; }
+    .blog-title a { color: var(--brown-dark); }
+    .blog-title a:hover { color: var(--brown); }
+    .blog-excerpt { font-size: .87rem; color: var(--text-muted); margin-bottom: 18px; }
+    .blog-footer { display: flex; align-items: center; justify-content: space-between; }
+    .blog-author { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--text-muted); }
+    .author-avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--parchment); display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 700; color: var(--brown);
+    }
+    .read-more { font-size: .85rem; font-weight: 600; color: var(--brown); letter-spacing: .03em; }
+    .read-more:hover { color: var(--gold); }
+
+    /* ─── Single Post Modal ─────────────────────── */
+    .post-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(26,10,2,.7); backdrop-filter: blur(4px);
+      z-index: 2000; align-items: flex-start; justify-content: center;
+      overflow-y: auto; padding: 40px 16px;
+    }
+    .post-overlay.open { display: flex; }
+    .post-modal {
+      background: var(--white); border-radius: 16px;
+      max-width: 780px; width: 100%;
+      padding: 48px; position: relative;
+      animation: modalIn .4s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .post-modal .close-btn {
+      position: absolute; top: 20px; right: 20px;
+      background: var(--parchment); border: none; border-radius: 50%;
+      width: 36px; height: 36px; font-size: 1.1rem;
+      cursor: pointer; color: var(--brown-dark);
+    }
+    .post-modal h1 { font-size: 2.2rem; margin-bottom: 16px; }
+    .post-modal .post-meta { color: var(--text-muted); font-size: .85rem; margin-bottom: 28px; display: flex; gap: 16px; }
+    .post-modal p { margin-bottom: 18px; color: var(--text-muted); line-height: 1.8; }
+    .post-modal h2 { font-size: 1.5rem; margin: 28px 0 14px; color: var(--brown-dark); }
+    .post-internal-links, .post-external-links { margin: 28px 0; padding: 20px; background: var(--parchment); border-radius: var(--radius); border-left: 4px solid var(--gold); }
+    .post-internal-links h3, .post-external-links h3 { font-size: 1rem; margin-bottom: 12px; font-family: 'DM Sans', sans-serif; font-weight: 600; }
+    .post-internal-links ul, .post-external-links ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .post-internal-links li::before, .post-external-links li::before { content: '→ '; color: var(--gold); }
+    .post-ad { margin: 28px 0; text-align: center; }
+
+    /* ─── Newsletter ────────────────────────────── */
+    .newsletter {
+      background: linear-gradient(135deg, var(--brown-dark), #2d1507);
+      padding: 80px 0; text-align: center; position: relative; overflow: hidden;
+    }
+    .newsletter::before {
+      content: '☕';
+      position: absolute; font-size: 18rem; opacity: .04;
+      top: -40px; right: -60px;
+    }
+    .newsletter h2 { color: var(--cream); margin-bottom: 16px; }
+    .newsletter p  { color: rgba(245,240,232,.7); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .newsletter-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .newsletter-form input {
+      padding: 14px 20px; border-radius: var(--radius); border: none;
+      background: rgba(255,255,255,.12); color: var(--cream);
+      font-family: 'DM Sans', sans-serif; font-size: .95rem;
+      width: 300px; outline: none;
+      border: 1px solid rgba(255,255,255,.2);
+      transition: border-color var(--transition);
+    }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,.45); }
+    .newsletter-form input:focus { border-color: var(--gold); }
+
+    /* ─── Footer ────────────────────────────────── */
+    footer {
+      background: var(--espresso); color: rgba(245,240,232,.7);
+      padding: 80px 0 32px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 64px;
+    }
+    .footer-brand .nav-logo { color: var(--cream); margin-bottom: 16px; }
+    .footer-brand p { font-size: .87rem; line-height: 1.8; max-width: 280px; }
+    .footer-col h4 { color: var(--cream); font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 20px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: .87rem; color: rgba(245,240,232,.6); transition: color var(--transition); }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: .8rem; flex-wrap: wrap; gap: 16px;
+    }
+    .social-links { display: flex; gap: 16px; }
+    .social-links a { color: rgba(245,240,232,.5); font-size: 1.1rem; transition: color var(--transition); }
+    .social-links a:hover { color: var(--gold); }
+
+    /* ─── Cart Drawer ───────────────────────────── */
+    .cart-drawer {
+      position: fixed; top: 0; right: -420px; width: 420px; height: 100vh;
+      background: var(--white); z-index: 3000;
+      box-shadow: -8px 0 40px rgba(26,10,2,.15);
+      transition: right var(--transition);
+      display: flex; flex-direction: column;
+    }
+    .cart-drawer.open { right: 0; }
+    .cart-overlay-bg {
+      display: none; position: fixed; inset: 0; background: rgba(26,10,2,.5);
+      z-index: 2999;
+    }
+    .cart-overlay-bg.open { display: block; }
+    .cart-header {
+      padding: 24px; border-bottom: 1px solid var(--parchment);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .cart-header h3 { font-size: 1.2rem; }
+    .cart-close { background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--brown-dark); }
+    .cart-items { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .cart-item { display: flex; gap: 16px; align-items: center; padding: 12px; background: var(--parchment); border-radius: var(--radius); }
+    .cart-item-emoji { font-size: 2rem; }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-weight: 600; font-size: .95rem; }
+    .cart-item-price { font-size: .85rem; color: var(--brown); }
+    .cart-item-remove { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1rem; }
+    .cart-footer { padding: 24px; border-top: 1px solid var(--parchment); }
+    .cart-total { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 700; font-size: 1.1rem; }
+    .cart-checkout-btn { width: 100%; }
+
+    /* ─── Breadcrumb ─────────────────────────────── */
+    .breadcrumb { font-size: .82rem; color: var(--text-muted); margin-bottom: 8px; }
+    .breadcrumb a { color: var(--brown-light); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* ─── Toast ─────────────────────────────────── */
+    .toast {
+      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(100px);
+      background: var(--brown-dark); color: var(--cream);
+      padding: 14px 28px; border-radius: 30px;
+      font-size: .9rem; font-weight: 500;
+      z-index: 5000; transition: transform .4s cubic-bezier(.4,0,.2,1);
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ─── Responsive ─────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .about-split { grid-template-columns: 1fr; }
+      .about-img-accent { display: none; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .feature-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.12); padding: 16px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .cart-drawer { width: 100%; right: -100%; }
+    }
+    @media (max-width: 600px) {
+      .section { padding: 64px 0; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .hero-content h1 { font-size: 2.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    ☕ Free shipping on orders over ₹999 — <a href="#shop" onclick="trackEvent('click','promo','free_shipping_banner')">Shop Now</a> | Use code <strong>BREW20</strong> for 20% off
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">☕</span>
+        Brewed &amp; Bound
+      </a>
+      <div class="nav-links">
+        <a href="#shop"       class="active" onclick="trackEvent('nav','click','shop')">Shop</a>
+        <a href="#about"      onclick="trackEvent('nav','click','about')">Our Story</a>
+        <a href="#blog"       onclick="trackEvent('nav','click','blog')">Journal</a>
+        <a href="#brewing"    onclick="trackEvent('nav','click','brewing')">Brewing Guide</a>
+        <a href="#contact"    onclick="trackEvent('nav','click','contact')">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="cart-btn" onclick="toggleCart()" aria-label="Cart">
+          🛒 <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#shop">Shop</a>
+      <a href="#about">Our Story</a>
+      <a href="#blog">Journal</a>
+      <a href="#brewing">Brewing Guide</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="section-label">☕ Est. 2018 — Single Origin Coffee</span>
+        <h1>Life is too short for <em>bad coffee.</em></h1>
+        <p>Hand-picked beans sourced directly from farmers in Coorg, Chikmagalur, and beyond — roasted fresh, delivered to your door.</p>
+        <div class="hero-actions">
+          <a href="#shop" class="btn btn-primary" onclick="trackEvent('cta','click','hero_shop_now')">Shop Coffee</a>
+          <a href="#about" class="btn btn-outline" style="color:var(--cream);border-color:var(--cream);" onclick="trackEvent('cta','click','hero_our_story')">Our Story</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- AdSense Leaderboard Banner -->
+  <div class="container">
+    <div class="adsense-banner adsense-slot">
+      <!-- Google AdSense — Replace slot ID below -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <small style="display:block;margin-top:6px;opacity:.5;">Advertisement</small>
+    </div>
+  </div>
+
+  <!-- Features Strip -->
+  <div class="features-strip">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-item"><span class="icon">🌱</span><div><h4>Direct Trade</h4><p>Farm to cup, ethically sourced</p></div></div>
+        <div class="feature-item"><span class="icon">🔥</span><div><h4>Fresh Roasted</h4><p>Roasted within 24 hrs of dispatch</p></div></div>
+        <div class="feature-item"><span class="icon">🚚</span><div><h4>Free Delivery</h4><p>On orders above ₹999</p></div></div>
+        <div class="feature-item"><span class="icon">🔄</span><div><h4>Subscribe & Save</h4><p>10% off on monthly subscriptions</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shop Section -->
+  <section class="section" id="shop">
+    <div class="container">
+      <span class="section-label">— Our Menu</span>
+      <h2 class="section-title">Freshly Roasted Selections</h2>
+      <div class="divider"></div>
+      <div class="shop-grid" id="shopGrid"></div>
+    </div>
+  </section>
+
+  <!-- AdSense Mid-Page Rectangle -->
+  <div class="ad-rectangle container">
+    <div class="adsense-slot">
+      <!-- Google AdSense Rectangle — Replace slot ID -->
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:336px;height:280px"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="0987654321"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section class="section" id="about" style="background:var(--white);">
+    <div class="container">
+      <div class="about-split">
+        <div class="about-img-wrap">
+          <img src="https://images.unsplash.com/photo-1516743619420-154b70a65fea?w=800&q=80"
+               alt="Our roastery" class="about-img-main" />
+          <img src="https://images.unsplash.com/photo-1508175800969-525c72a047dd?w=400&q=80"
+               alt="Coffee beans" class="about-img-accent" />
+        </div>
+        <div class="about-text">
+          <span class="section-label">— Our Story</span>
+          <h2 class="section-title">Rooted in Craft, Driven by Flavour</h2>
+          <div class="divider"></div>
+          <p>Brewed &amp; Bound was born in a small garage in Bangalore in 2018, when founder Arjun Mehta returned from a trip to Coorg carrying 5 kgs of the most extraordinary beans he'd ever tasted.</p>
+          <p>Today we work directly with <strong>12 family farms</strong> across India's coffee belt — paying fair prices, supporting sustainable practices, and sharing the stories of the people behind your cup.</p>
+          <p>Every batch is small-roasted, quality-tested, and shipped within 48 hours. Because freshness isn't a luxury, it's the point.</p>
+          <div class="about-stats">
+            <div class="stat"><div class="stat-num">12</div><div class="stat-label">Partner Farms</div></div>
+            <div class="stat"><div class="stat-num">6yr</div><div class="stat-label">Roasting</div></div>
+            <div class="stat"><div class="stat-num">40k+</div><div class="stat-label">Happy Sippers</div></div>
+          </div>
+          <a href="#blog" class="btn btn-primary" onclick="trackEvent('cta','click','about_read_more')">Read Our Journal →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="section" id="blog">
+    <div class="container">
+      <span class="section-label">— The Brewed &amp; Bound Journal</span>
+      <h2 class="section-title">Coffee Stories &amp; Guides</h2>
+      <div class="divider"></div>
+      <div class="blog-grid" id="blogGrid"></div>
+    </div>
+  </section>
+
+  <!-- Brewing Guide -->
+  <section class="section" id="brewing" style="background:var(--white);">
+    <div class="container">
+      <span class="section-label">— Brewing Methods</span>
+      <h2 class="section-title">How to Brew the Perfect Cup</h2>
+      <div class="divider"></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px;" id="brewingGrid"></div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container">
+      <h2>Join the Brew Crew</h2>
+      <p>Get brewing tips, new arrivals, exclusive deals, and coffee farm stories straight to your inbox.</p>
+      <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+        <input type="email" id="emailInput" placeholder="your@email.com" required />
+        <button type="submit" class="btn btn-primary" onclick="trackEvent('form','submit','newsletter')">Subscribe Free</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="font-size:1.4rem;">☕ Brewed &amp; Bound</div>
+          <p>Premium single-origin coffees sourced directly from India's finest farms. Roasted fresh, delivered with love.</p>
+          <div class="social-links" style="margin-top:20px;">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" onclick="trackEvent('social','click','instagram')">📷</a>
+            <a href="https://twitter.com"   target="_blank" rel="noopener noreferrer" onclick="trackEvent('social','click','twitter')">🐦</a>
+            <a href="https://facebook.com"  target="_blank" rel="noopener noreferrer" onclick="trackEvent('social','click','facebook')">📘</a>
+            <a href="https://youtube.com"   target="_blank" rel="noopener noreferrer" onclick="trackEvent('social','click','youtube')">▶️</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#shop">Whole Bean</a></li>
+            <li><a href="#shop">Ground Coffee</a></li>
+            <li><a href="#shop">Cold Brew Packs</a></li>
+            <li><a href="#shop">Gift Sets</a></li>
+            <li><a href="#shop">Subscriptions</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="#blog">Coffee Journal</a></li>
+            <li><a href="#brewing">Brewing Guides</a></li>
+            <li><a href="#blog" onclick="openPost(0)">Origin Stories</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Coffee" target="_blank" rel="noopener noreferrer">Coffee on Wikipedia ↗</a></li>
+            <li><a href="https://www.ncausa.org/" target="_blank" rel="noopener noreferrer">NCA Coffee Facts ↗</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="mailto:hello@brewedandbound.com">hello@brewedandbound.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Brewed &amp; Bound. All rights reserved.</span>
+        <span style="font-size:.75rem;opacity:.5;">
+          <a href="#" style="color:inherit;">Privacy Policy</a> ·
+          <a href="#" style="color:inherit;">Terms of Service</a> ·
+          <a href="#" style="color:inherit;">Sitemap</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Overlay -->
+  <div class="cart-overlay-bg" id="cartBg" onclick="toggleCart()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Your Cart 🛒</h3>
+      <button class="cart-close" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p style="color:var(--text-muted);font-size:.9rem;text-align:center;margin-top:40px;">Your cart is empty.</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">₹0.00</span>
+      </div>
+      <button class="btn btn-primary cart-checkout-btn" onclick="handleCheckout()">Checkout →</button>
+    </div>
+  </div>
+
+  <!-- Blog Post Modal -->
+  <div class="post-overlay" id="postOverlay" onclick="closePostOnBg(event)">
+    <div class="post-modal" id="postModal">
+      <button class="close-btn" onclick="closePost()">✕</button>
+      <div id="postContent"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════ -->
+  <script>
+    /* ── Product Data ─────────────────────────── */
+    const products = [
+      { id:1, name:"Coorg Arabica Blend", origin:"Karnataka, India", desc:"Floral, bright acidity with hints of bergamot and dark chocolate.", price:549, badge:"Best Seller", emoji:"☕",
+        img:"https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80" },
+      { id:2, name:"Chikmagalur Dark Roast", origin:"Karnataka, India", desc:"Bold, smoky espresso-grade beans with a lingering caramel finish.", price:649, badge:"New", emoji:"🖤",
+        img:"https://images.unsplash.com/photo-1500783236428-a5f30bb9e7d0?w=600&q=80" },
+      { id:3, name:"Monsoon Malabar AAA", origin:"Kerala, India", desc:"Aged in monsoon winds for a uniquely earthy, low-acid profile.", price:749, badge:"Rare", emoji:"🌧️",
+        img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" },
+      { id:4, name:"Cold Brew Starter Pack", origin:"Blend", desc:"Our medium roast, coarsely ground for a smooth, refreshing cold brew.", price:499, badge:"Popular", emoji:"🧊",
+        img:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80" },
+      { id:5, name:"Pour-Over Sampler Box", origin:"3 Origins", desc:"Three 100g bags — perfect for exploring Indian terroirs.", price:999, badge:"Gift", emoji:"🎁",
+        img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" },
+      { id:6, name:"Espresso Subscription", origin:"Monthly Box", desc:"Curated espresso blends delivered every month. Cancel anytime.", price:899, badge:"Save 10%", emoji:"📦",
+        img:"https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600&q=80" },
+    ];
+
+    /* ── Blog Data ────────────────────────────── */
+    const posts = [
+      {
+        id:0,
+        category:"Origin Stories",
+        date:"March 22, 2025",
+        title:"The Misty Hills of Coorg: Where Our Arabica Comes From",
+        excerpt:"We travelled deep into the Western Ghats to meet the Raj family, third-generation coffee farmers who have tended the same estate for over 70 years.",
+        author:"Arjun Mehta",
+        img:"https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=600&q=80",
+        content: `
+          <div class="breadcrumb"><a href="#blog">Journal</a> <span>›</span> Origin Stories</div>
+          <h1>The Misty Hills of Coorg: Where Our Arabica Comes From</h1>
+          <div class="post-meta"><span>📅 March 22, 2025</span><span>✍️ Arjun Mehta</span><span>⏱️ 6 min read</span></div>
+          <p>Nestled at 1,200 metres above sea level, the Raj Estate in Coorg receives an average of 2,500mm of rainfall each year. The coffee here doesn't just grow — it thrives, nurtured by mist, shade trees, and three generations of careful farming.</p>
+          <p>When I first visited in 2017, I wasn't looking to start a business. I was a software engineer on a weekend trek. But the first sip of freshly brewed Arabica, straight from the farm, changed everything. I knew I had to share this.</p>
+          <h2>The Farm & The Family</h2>
+          <p>Ravi Raj, 58, has been farming coffee since he was a teenager. His grandfather planted the original Arabica varietal trees that still stand today. "We don't plant for yield," he told me. "We plant for flavour." That philosophy shows in every cup.</p>
+          <p>Today, the estate spans 14 acres and employs 18 local workers year-round. We pay a 30% premium above market price — a direct trade commitment that allows Ravi to invest in soil health and worker welfare.</p>
+          <div class="post-internal-links">
+            <h3>📖 Read More on Our Journal</h3>
+            <ul>
+              <li><a href="#blog" onclick="closePost();openPost(1)">How We Roast Our Coorg Beans →</a></li>
+              <li><a href="#brewing">Brewing Guide: Pour-Over for Arabica →</a></li>
+              <li><a href="#shop">Shop Coorg Arabica Blend →</a></li>
+            </ul>
+          </div>
+          <h2>Tasting Notes</h2>
+          <p>Expect bright florals on the nose — jasmine and bergamot — followed by a stone-fruit sweetness reminiscent of apricot. The finish is clean with a gentle dark chocolate bitterness that lingers just long enough.</p>
+          <div class="post-external-links">
+            <h3>🌐 External Resources</h3>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Coorg" target="_blank" rel="noopener noreferrer">Learn about Coorg on Wikipedia →</a></li>
+              <li><a href="https://www.coffeeresearch.org/" target="_blank" rel="noopener noreferrer">Coffee Research Institute →</a></li>
+              <li><a href="https://www.worldcoffeeresearch.org/" target="_blank" rel="noopener noreferrer">World Coffee Research →</a></li>
+            </ul>
+          </div>
+          <div class="post-ad adsense-slot">
+            <ins class="adsbygoogle" style="display:block;text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1122334455"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
+          </div>
+        `
+      },
+      {
+        id:1,
+        category:"Brewing",
+        date:"February 14, 2025",
+        title:"The Science of Pour-Over: Why Ratio Matters More Than You Think",
+        excerpt:"From water temperature to grind size, we break down the exact variables that turn a good pour-over into a transcendent one.",
+        author:"Priya Nair",
+        img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80",
+        content: `
+          <div class="breadcrumb"><a href="#blog">Journal</a> <span>›</span> Brewing</div>
+          <h1>The Science of Pour-Over: Why Ratio Matters More Than You Think</h1>
+          <div class="post-meta"><span>📅 February 14, 2025</span><span>✍️ Priya Nair</span><span>⏱️ 8 min read</span></div>
+          <p>Most people obsess over which beans to buy. Fewer obsess over how to brew them. But here's the truth: a mediocre bean brewed with precision will outperform an exceptional bean brewed carelessly.</p>
+          <h2>The Golden Ratio</h2>
+          <p>Start with a 1:15 ratio — 1 gram of coffee for every 15 grams of water. For a single 300ml cup, that's 20g of coffee. From there, adjust based on your taste: closer to 1:12 for a stronger cup, 1:17 for something more delicate.</p>
+          <h2>Water Temperature</h2>
+          <p>Never use boiling water. Aim for 92–96°C (198–204°F). Too hot and you'll extract bitter compounds; too cool and you'll under-extract, leaving the cup sour and flat. If you don't have a thermometer, let boiled water sit for 30–45 seconds.</p>
+          <div class="post-internal-links">
+            <h3>📖 Related Guides</h3>
+            <ul>
+              <li><a href="#shop">Shop Pour-Over Sampler Box →</a></li>
+              <li><a href="#blog" onclick="closePost();openPost(2)">Cold Brew Guide: 12-Hour Patience →</a></li>
+              <li><a href="#about">About Our Roasting Process →</a></li>
+            </ul>
+          </div>
+          <div class="post-external-links">
+            <h3>🌐 Further Reading</h3>
+            <ul>
+              <li><a href="https://www.baristahustle.com/" target="_blank" rel="noopener noreferrer">Barista Hustle — Coffee Science →</a></li>
+              <li><a href="https://sca.coffee/" target="_blank" rel="noopener noreferrer">Specialty Coffee Association →</a></li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id:2,
+        category:"Culture",
+        date:"January 8, 2025",
+        title:"Cold Brew in 12 Hours: A Weekend Ritual Worth Cultivating",
+        excerpt:"Cold brew is not just a summer drink. It's a meditation on patience, and the reward is a glass of deeply satisfying concentrate.",
+        author:"Arjun Mehta",
+        img:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80",
+        content: `
+          <div class="breadcrumb"><a href="#blog">Journal</a> <span>›</span> Culture</div>
+          <h1>Cold Brew in 12 Hours: A Weekend Ritual Worth Cultivating</h1>
+          <div class="post-meta"><span>📅 January 8, 2025</span><span>✍️ Arjun Mehta</span><span>⏱️ 5 min read</span></div>
+          <p>There's something deeply satisfying about putting a jar of coffee in the fridge on a Friday evening and waking up on Saturday to the richest, smoothest cup of your week. Cold brew is a ritual.</p>
+          <h2>The Method</h2>
+          <p>Coarsely grind 100g of coffee. Combine with 750ml of cold, filtered water in a jar. Stir gently. Cover and refrigerate for 12–16 hours. Strain through a fine mesh filter or cheesecloth. Dilute 1:1 with water or milk to serve.</p>
+          <h2>Why Our Cold Brew Pack?</h2>
+          <p>Our Cold Brew Starter Pack features a medium roast from the Chikmagalur hills, coarsely ground to the exact size that maximises cold extraction without over-bitterness. It's our most popular product for a reason.</p>
+          <div class="post-internal-links">
+            <h3>📖 Related Articles</h3>
+            <ul>
+              <li><a href="#shop">Shop Cold Brew Starter Pack →</a></li>
+              <li><a href="#blog" onclick="closePost();openPost(1)">Pour-Over vs Cold Brew: Which is Right for You? →</a></li>
+            </ul>
+          </div>
+          <div class="post-external-links">
+            <h3>🌐 Learn More</h3>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Cold_brew_coffee" target="_blank" rel="noopener noreferrer">Cold Brew Coffee — Wikipedia →</a></li>
+              <li><a href="https://www.seriouseats.com/cold-brew-coffee" target="_blank" rel="noopener noreferrer">Serious Eats: Cold Brew Guide →</a></li>
+            </ul>
+          </div>
+        `
+      }
+    ];
+
+    /* ── Brewing Methods ──────────────────────── */
+    const brewingMethods = [
+      { name:"Pour-Over", time:"4 min", ratio:"1:15", emoji:"⛵", tip:"Bloom for 30s with 2× coffee weight in water." },
+      { name:"French Press", time:"4 min", ratio:"1:12", emoji:"🫖", tip:"Plunge slowly; don't stir after plunging." },
+      { name:"Cold Brew", time:"12–16 hr", ratio:"1:8", emoji:"🧊", tip:"Coarse grind. Dilute 1:1 before serving." },
+      { name:"Espresso", time:"25–30 sec", ratio:"1:2", emoji:"☕", tip:"9 bars of pressure. 92°C water. Tamp evenly." },
+      { name:"AeroPress", time:"2 min", ratio:"1:10", emoji:"🔬", tip:"Experiment with inverted method for a richer cup." },
+      { name:"Moka Pot", time:"5 min", ratio:"1:7", emoji:"🫙", tip:"Use medium heat and pre-heated water." },
+    ];
+
+    /* ── Render Shop ─────────────────────────── */
+    function renderShop(){
+      const grid = document.getElementById('shopGrid');
+      grid.innerHTML = products.map(p => `
+        <div class="product-card" onclick="trackEvent('product','click','${p.name}')">
+          <div class="product-img" style="background-image:url('${p.img}')">
+            ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+          </div>
+          <div class="product-body">
+            <div class="product-origin">${p.origin}</div>
+            <h3 class="product-name">${p.name}</h3>
+            <p class="product-desc">${p.desc}</p>
+            <div class="product-footer">
+              <span class="product-price">₹${p.price}</span>
+              <button class="add-to-cart-btn" onclick="addToCart(event,${p.id})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ── Render Blog ─────────────────────────── */
+    function renderBlog(){
+      const grid = document.getElementById('blogGrid');
+      grid.innerHTML = posts.map((p,i) => `
+        <article class="blog-card">
+          <div class="blog-img" style="background-image:url('${p.img}')"></div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span class="tag">${p.category}</span>
+              <time>${p.date}</time>
+            </div>
+            <h3 class="blog-title"><a href="#" onclick="openPost(${i});return false;">${p.title}</a></h3>
+            <p class="blog-excerpt">${p.excerpt}</p>
+            <div class="blog-footer">
+              <div class="blog-author">
+                <div class="author-avatar">${p.author.split(' ').map(n=>n[0]).join('')}</div>
+                ${p.author}
+              </div>
+              <a href="#" class="read-more" onclick="openPost(${i});return false;">Read More →</a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    /* ── Render Brewing ──────────────────────── */
+    function renderBrewing(){
+      const grid = document.getElementById('brewingGrid');
+      grid.innerHTML = brewingMethods.map(m => `
+        <div style="background:var(--cream);border-radius:12px;padding:28px;border:1px solid var(--parchment);transition:transform .3s;"
+             onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+          <div style="font-size:2.5rem;margin-bottom:12px;">${m.emoji}</div>
+          <h3 style="font-size:1.2rem;margin-bottom:8px;">${m.name}</h3>
+          <div style="display:flex;gap:16px;margin-bottom:12px;">
+            <span style="font-size:.78rem;color:var(--text-muted);">⏱ ${m.time}</span>
+            <span style="font-size:.78rem;color:var(--text-muted);">⚖️ Ratio ${m.ratio}</span>
+          </div>
+          <p style="font-size:.84rem;color:var(--text-muted);">💡 ${m.tip}</p>
+        </div>
+      `).join('');
+    }
+
+    /* ── Cart State ──────────────────────────── */
+    let cart = [];
+
+    function addToCart(e, productId){
+      e.stopPropagation();
+      const product = products.find(p => p.id === productId);
+      const existing = cart.find(i => i.id === productId);
+      if(existing){ existing.qty++; }
+      else { cart.push({...product, qty:1}); }
+      updateCartUI();
+      showToast(`${product.emoji} ${product.name} added to cart!`);
+      trackEvent('ecommerce','add_to_cart', product.name, product.price);
+    }
+
+    function removeFromCart(productId){
+      cart = cart.filter(i => i.id !== productId);
+      updateCartUI();
+    }
+
+    function updateCartUI(){
+      const count = cart.reduce((s,i) => s+i.qty, 0);
+      document.getElementById('cartCount').textContent = count;
+      const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+      document.getElementById('cartTotal').textContent = `₹${total.toFixed(2)}`;
+      const itemsEl = document.getElementById('cartItems');
+      if(cart.length === 0){
+        itemsEl.innerHTML = '<p style="color:var(--text-muted);font-size:.9rem;text-align:center;margin-top:40px;">Your cart is empty.</p>';
+      } else {
+        itemsEl.innerHTML = cart.map(i => `
+          <div class="cart-item">
+            <span class="cart-item-emoji">${i.emoji}</span>
+            <div class="cart-item-info">
+              <div class="cart-item-name">${i.name} × ${i.qty}</div>
+              <div class="cart-item-price">₹${(i.price * i.qty).toFixed(2)}</div>
+            </div>
+            <button class="cart-item-remove" onclick="removeFromCart(${i.id})">🗑</button>
+          </div>
+        `).join('');
+      }
+    }
+
+    function toggleCart(){
+      document.getElementById('cartDrawer').classList.toggle('open');
+      document.getElementById('cartBg').classList.toggle('open');
+    }
+
+    function handleCheckout(){
+      if(cart.length === 0){ showToast('Your cart is empty!'); return; }
+      const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+      trackConversion('CHECKOUT_CONVERSION_LABEL');
+      trackEvent('ecommerce','purchase','checkout', total);
+      showToast('🎉 Order placed! Thank you for your purchase.');
+      cart = [];
+      updateCartUI();
+      toggleCart();
+    }
+
+    /* ── Blog Post Modal ─────────────────────── */
+    function openPost(index){
+      const post = posts[index];
+      document.getElementById('postContent').innerHTML = post.content;
+      document.getElementById('postOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      trackEvent('blog','view', post.title);
+      // Push new AdSense ads if any in the modal
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+    }
+
+    function closePost(){
+      document.getElementById('postOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closePostOnBg(e){
+      if(e.target === document.getElementById('postOverlay')) closePost();
+    }
+
+    /* ── Mobile Menu ─────────────────────────── */
+    function toggleMenu(){
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    /* ── Newsletter ──────────────────────────── */
+    function handleSubscribe(e){
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+      trackEvent('form','subscribe','newsletter_email');
+      showToast(`☕ Welcome aboard! Check ${email} for a discount code.`);
+      document.getElementById('emailInput').value = '';
+    }
+
+    /* ── Toast ───────────────────────────────── */
+    let toastTimer;
+    function showToast(msg){
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+    }
+
+    /* ── Smooth active nav on scroll ────────── */
+    const sections = ['shop','about','blog','brewing'];
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if(el && window.scrollY >= el.offsetTop - 120) current = id;
+      });
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
+      });
+    });
+
+    /* ── Init ────────────────────────────────── */
+    renderShop();
+    renderBlog();
+    renderBrewing();
+    updateCartUI();
+  </script>
+</body>
+</html>
